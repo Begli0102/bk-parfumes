@@ -26,7 +26,7 @@ app.use("/users", userRoute);
 app.use("/products", productRoute);
 
 app.get("/", (req, res) => {
-  res.send("Hello to bk-parfumes API");
+  res.send("Hello to Bk-parfumes API");
 });
 
 const PORT = process.env.PORT || 8080;
