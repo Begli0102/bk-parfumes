@@ -1,7 +1,15 @@
 import { Container, Button } from "../styled-components/landingPage";
-import { useState } from "react";
+// import {Navigate } from 'react-router-dom'
 const LandingPage = () => {
-  return <Container>{/* <Button>Learn more</Button> */}</Container>;
+  // const getStarted = () => {
+  //   Navigate("/register");
+  // };
+
+  return (
+    <Container>
+      {/* <Button onClick={getStarted}>get started</Button> */}
+    </Container>
+  );
 };
 
 export default LandingPage;
