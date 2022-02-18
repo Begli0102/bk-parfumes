@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CartPage from "./pages/CartPage";
-// import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/LandingPage";
 
 //Components
 import Nav from "./components/Nav";
@@ -34,6 +34,7 @@ function App() {
           <Route exact path="/cart" render={() => <CartPage />} />
           <Route exact path="/home" render={() => <HomePage />} />
           <Route exact path="/login" render={() => <LoginPage />} />
+          <Route exact path="/" render={() => <LandingPage />} />
         </Routes>
         <Footer />
       </Container>
