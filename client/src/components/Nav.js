@@ -18,7 +18,7 @@ const Nav = () => {
 
   const logout = () => {
     localStorage.removeItem("userInfo");
-    window.location = "/register";
+    (window.location = "/");
   };
 
   return (
