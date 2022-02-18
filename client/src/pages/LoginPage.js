@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
   Container,
   Wrapper,
@@ -44,7 +44,7 @@ const LoginPage = () => {
         localStorage.setItem(
           "userInfo",
           JSON.stringify(data.token)
-        )((window.location = "/home"));
+        )(<Redirect to="/home" />);
       }, setLoading(true))
 
       .catch((error) => {
