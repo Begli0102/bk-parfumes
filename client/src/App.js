@@ -32,7 +32,7 @@ function App() {
 
           <Route exact path="/register" render={() => <RegisterPage />} />
           <Route exact path="/cart" render={() => <CartPage />} />
-          <Route exact path="/home" render={() => <HomePage />} />
+          <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/login" render={() => <LoginPage />} />
           {/* <Route exact path="/" render={() => <LandingPage />} /> */}
         </Switch>
