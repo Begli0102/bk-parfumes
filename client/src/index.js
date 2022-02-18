@@ -3,14 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import ProductProvider from "./context/ProductContext";
-import { HashRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <ProductProvider>
-      <HashRouter>
-        <App />
-      </HashRouter>
+      <App />
     </ProductProvider>
     ,
   </React.StrictMode>,

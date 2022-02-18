@@ -13,32 +13,32 @@ import LandingPage from "./pages/LandingPage";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
-import {  Route, Switch } from "react-router-dom";
+import {  HashRouter as Router, Route, Switch } from "react-router-dom";
 // import ProductProvider from "./context/ProductContext";
 
 const Container = styled.div``;
 
 function App() {
   return (
-    
+    <Router>
       <Container>
         <Nav />
         <Switch>
-          <Route exact path="/register" element={<RegisterPage />} />
+          {/* <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/" element={<LandingPage /> } />
+          <Route exact path="/" element={<LandingPage /> } /> */}
 
-          {/* <Route exact path="/register" render={() => <RegisterPage />} />
+          <Route exact path="/register" render={() => <RegisterPage />} />
           <Route exact path="/cart" render={() => <CartPage />} />
           <Route exact path="/home" render={() => <HomePage />} />
           <Route exact path="/login" render={() => <LoginPage />} />
-          <Route exact path="/" render={() => <LandingPage />} /> */}
+          {/* <Route exact path="/" render={() => <LandingPage />} /> */}
         </Switch>
         <Footer />
       </Container>
-   
+      </Router>
   );
 }
 
