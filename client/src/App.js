@@ -13,7 +13,7 @@ import CartPage from "./pages/CartPage";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 // import ProductProvider from "./context/ProductContext";
 
 const Container = styled.div``;
