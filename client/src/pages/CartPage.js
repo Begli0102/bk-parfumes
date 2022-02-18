@@ -24,20 +24,20 @@ import {
 } from "../styled-components/cartPage";
 import { useParams } from "react-router-dom";
 const CartPage = () => {
-  const { cart, setCart, totalPrice, setTotalPrice } =
+  const { products, cart, setCart, totalPrice, setTotalPrice } =
     useContext(ProductContext);
 
-  // let { id } = useParams();
+  let { id } = useParams();
 
-  // let product = products.filter((product) => product._id == id);
+  let product = products.filter((product) => product._id == id);
 
   const removeItem = (id) => {
     const newItems = cart.filter((item) => item.id !== id);
     setCart(newItems);
 
-    const priceResult = newItems.reduce(
-      (acc, val) => (acc += val.price * val.cardCount),
-      0
+    const priceResult = cart.reduce(
+      (acc, val) => (acc -= val.price),
+      totalPrice
     );
     setTotalPrice(priceResult);
   };

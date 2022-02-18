@@ -4,8 +4,8 @@ import { tablet } from "../Responsive";
 
 export const Container = styled.div`
   height: 60px;
-  background-color: rgb(74, 74, 75);
-  color: white;
+  background: rgb(5,5,14);
+  background: linear-gradient(90deg, rgba(5,5,14,1) 0%, rgba(101,156,184,1) 37%); color: white;
   ${mobile({})}
   ${tablet({ width: "100%", height: "60px" })}
 `;

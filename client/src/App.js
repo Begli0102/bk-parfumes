@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CartPage from "./pages/CartPage";
-import LandingPage from "./pages/LandingPage";
+// import LandingPage from "./pages/LandingPage";
 
 //Components
 import Nav from "./components/Nav";
@@ -24,7 +24,7 @@ function App() {
       <Container>
         <Nav />
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
+          {/* <Route exact path="/" element={<LandingPage />} /> */}
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/home" element={<HomePage />} />

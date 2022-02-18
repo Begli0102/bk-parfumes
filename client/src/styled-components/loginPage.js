@@ -1,26 +1,23 @@
 import styled from "styled-components";
 import { mobile } from "../Responsive";
 import { tablet } from "../Responsive";
-import img from "../images/creed.jpg";
-
 
 export const Container = styled.div`
-background-image: url(${img});
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  transparent:4;
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+
+  filter: brightness(75%);
   ${mobile({
     display: "flex",
     justifyContent: "center",
     margin: "0px auto",
     width: "100%",
-  })}
+  })};
 `;
 export const Wrapper = styled.div`
   width: 30%;
@@ -61,6 +58,7 @@ export const Button = styled.button`
 export const Li = styled.a`
   margin: 5px 0px;
   font-size: 12px;
+  color: white;
 `;
 
 export const Error = styled.p`

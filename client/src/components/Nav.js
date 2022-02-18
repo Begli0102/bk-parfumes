@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import {
   Container,
@@ -18,7 +18,7 @@ const Nav = () => {
 
   const logout = () => {
     localStorage.removeItem("userInfo");
-    window.location = "/";
+    window.location = "/register";
   };
 
   return (

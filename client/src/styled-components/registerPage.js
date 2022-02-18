@@ -1,19 +1,16 @@
 import styled from "styled-components";
 import { mobile } from "../Responsive";
 import { tablet } from "../Responsive";
-import img from "../images/boss.jpg";
 
 export const Container = styled.div`
-  background-image: url(${img});
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  
+  filter: brightness(75%);
 `;
 export const Wrapper = styled.div`
   width: 30%;
@@ -43,7 +40,7 @@ export const Input = styled.input`
 `;
 export const Agreement = styled.span`
   margin: 20px 0px;
-  color:white;
+  color: white;
 `;
 export const Button = styled.button`
   padding: 7px;

@@ -24,7 +24,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8080/users/register", {
+      .post("https://bk-parfumes.herokuapp.com/users/register", {
         name: formValues.name,
         surname: formValues.surname,
         email: formValues.email,

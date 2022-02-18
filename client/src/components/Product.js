@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductContext } from "../context/ProductContext";
 
 import {
@@ -15,11 +15,12 @@ const Product = ({ product, title, description, price, img }) => {
   const { cart, setCart, setTotalPrice } = useContext(ProductContext);
 
   const addToCart = () => {
-    setTotalPrice(cart.reduce((acc, curr) => acc + curr.price, 0));
-
     setCart([...cart, product]);
   };
 
+  useEffect(() => {
+    setTotalPrice(cart.reduce((acc, cart) => acc + cart.price, 0));
+  }, [cart]);
   return (
     <>
       <Container>

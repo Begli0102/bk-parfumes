@@ -31,7 +31,7 @@ const LoginPage = () => {
     /* Send a request to the server for authentication */
     await axios
       .post(
-        "http://localhost:8080/users/login",
+        "https://bk-parfumes.herokuapp.com/users/login",
         {
           email: formValues.email,
           password: formValues.password,
@@ -107,7 +107,16 @@ const LoginPage = () => {
           <Error>{formErrors.password}</Error>
           <Button onClick={handleSubmit}>Log in</Button>
           <Li>FORGOT THE PASSWORD?</Li>
-          <Link to="/register">CREATE A NEW ACCOUNT</Link>
+          <Link
+            style={{
+              textDecoration: "none",
+              color: "white",
+              fontWeight: "bold",
+            }}
+            to="/register"
+          >
+            CREATE A NEW ACCOUNT
+          </Link>
         </Form>
       </Wrapper>
     </Container>

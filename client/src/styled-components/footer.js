@@ -3,8 +3,8 @@ import { mobile } from "../Responsive";
 
 export const Container = styled.div`
   display: flex;
-  background-color: rgb(74, 74, 75);
-  color: white;
+  background: rgb(5,5,14);
+  background: linear-gradient(90deg, rgba(5,5,14,1) 0%, rgba(101,156,184,1) 37%);  color: white;
   ${mobile({
     width: "100%",
     flexDirection: "column",
