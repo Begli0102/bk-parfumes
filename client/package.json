@@ -1,7 +1,7 @@
 {
   "name": "bk-parfumes",
   "version": "0.1.0",
-  "homepage": "https://Begli0102.github.io/bk-parfumes/",
+  "homepage": "https://Begli0102.github.io/bk-parfumes",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
