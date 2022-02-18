@@ -33,7 +33,7 @@ const Nav = () => {
             <>
               <Link
                 style={{ textDecoration: "none", color: "black" }}
-                to="/home"
+                to="/"
               >
                 <MenuItem>Home</MenuItem>
               </Link>

@@ -20,16 +20,20 @@ const Container = styled.div``;
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.Public_URL}>
       <Container>
         <Nav />
         <Routes>
-          
+          {/*           
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/home" element={<HomePage />} />
-          <Route exact path="/login" element={<LoginPage />} />
-         
+          <Route exact path="/login" element={<LoginPage />} /> */}
+
+          <Route exact path="/register" render={() => <RegisterPage />} />
+          <Route exact path="/cart" render={() => <CartPage />} />
+          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/login" render={() => <LoginPage />} />
         </Routes>
         <Footer />
       </Container>
