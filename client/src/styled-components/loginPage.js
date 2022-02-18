@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import { mobile } from "../Responsive";
 import { tablet } from "../Responsive";
+import img from "../images/creed.jpg";
+
 
 export const Container = styled.div`
+background-image: url(${img});
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transparent:4;
   ${mobile({
     display: "flex",
     justifyContent: "center",
