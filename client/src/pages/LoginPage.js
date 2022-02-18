@@ -44,7 +44,7 @@ const LoginPage = () => {
         localStorage.setItem(
           "userInfo",
           JSON.stringify(data.token)
-        )((window.location = "/"));
+        )((window.location = "/home"));
       }, setLoading(true))
 
       .catch((error) => {

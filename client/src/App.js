@@ -32,7 +32,7 @@ function App() {
 
           <Route exact path="/register" render={() => <RegisterPage />} />
           <Route exact path="/cart" render={() => <CartPage />} />
-          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/home" render={() => <HomePage />} />
           <Route exact path="/login" render={() => <LoginPage />} />
         </Routes>
         <Footer />
