@@ -27,11 +27,11 @@ function App() {
           {/* <Route exact path="/" element={<LandingPage />} /> */}
           <Route exact path="/register" element={<RegisterPage />} />
           <Route exact path="/cart" element={<CartPage />} />
-          <Route exact path={process.env.PUBLIC_URL + "/home"}>
+          {/* <Route exact path={process.env.PUBLIC_URL + "/home"}>
             <HomePage />
-          </Route>
+          </Route> */}
 
-          {/* <Route exact path="/home" element={<HomePage />} /> */}
+          <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/login" element={<LoginPage />} />
         </Routes>
         <Footer />

@@ -6,9 +6,12 @@ import ProductProvider from "./context/ProductContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductProvider>
-      <App />
-    </ProductProvider>
+    <HashRouter>
+      <ProductProvider>
+        <App />
+      </ProductProvider>
+    </HashRouter>
+    ,
   </React.StrictMode>,
 
   document.getElementById("root")
