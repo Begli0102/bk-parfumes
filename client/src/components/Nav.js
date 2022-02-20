@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import {
   Container,
@@ -16,9 +16,12 @@ const Nav = () => {
   const { cart } = useContext(ProductContext);
   const user = localStorage.getItem("userInfo");
 
+   const history = useHistory();
+
   const logout = () => {
     localStorage.removeItem("userInfo");
-    (window.location = "/register");
+    history.push("/");
+    // window.open("/")
   };
 
   return (
@@ -37,9 +40,9 @@ const Nav = () => {
               >
                 <MenuItem>Home</MenuItem>
               </Link>
-              {/* <Link style={{ textDecoration: "none", color: "black" }}to="/">  */}
+
               <MenuItem onClick={logout}>Log out</MenuItem>
-              {/* </Link>  */}
+
               <MenuItem>
                 <Link to="/cart">
                   <Badge badgeContent={cart.length} color="primary">

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { DeleteOutlined } from "@material-ui/icons";
 import { ProductContext } from "../context/ProductContext";
 import {
@@ -9,7 +9,7 @@ import {
   Product,
   ProductDetail,
   Image,
-  Item,
+  // Item,
   ProductName,
   PriceDetail,
   Description,
@@ -27,9 +27,9 @@ const CartPage = () => {
   const { products, cart, setCart, totalPrice, setTotalPrice } =
     useContext(ProductContext);
 
-  let { id } = useParams();
+  // let { id } = useParams();
 
-  let product = products.filter((product) => product._id == id);
+  // let product = products.filter((product) => product._id == id);
 
   const removeItem = (id) => {
     const newItems = cart.filter((item) => item.id !== id);

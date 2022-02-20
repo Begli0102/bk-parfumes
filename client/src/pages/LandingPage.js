@@ -1,4 +1,4 @@
-import { Container, Button } from "../styled-components/landingPage";
+import { Container } from "../styled-components/landingPage";
 // import {Navigate } from 'react-router-dom'
 const LandingPage = () => {
   // const getStarted = () => {

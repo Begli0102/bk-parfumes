@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 import {
   Container,
   Wrapper,
@@ -10,7 +11,6 @@ import {
   Button,
   Li,
   Error,
-  Success,
   Loading,
 } from "../styled-components/loginPage";
 
@@ -20,39 +20,46 @@ const LoginPage = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
-  const handleSubmit = async (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-    /* Send a request to the server for authentication */
-    await axios
-      .post(
-        "https://bk-parfumes.herokuapp.com/users/login",
-        {
-          email: formValues.email,
-          password: formValues.password,
+
+    axios
+      .post("https://bk-parfumes.herokuapp.com/users/login", {
+        email: formValues.email,
+        password: formValues.password,
+      })
+      .then(
+        (response) => {
+          const data = response.data;
+          console.log(data);
+
+          localStorage.setItem("userInfo", JSON.stringify(data.token));
         },
-        config
+        setLoading(true),
+        history.push("/home")
       )
-      .then((response) => {
-        const data = response.data;
-
-        localStorage.setItem(
-          "userInfo",
-          JSON.stringify(data.token)
-        )(<Redirect to="/home" />);
-      }, setLoading(true))
-
       .catch((error) => {
-        console.log("No such user");
+        if (error.response) {
+          console.log(error.response.data);
+        }
       });
     setFormErrors(validate(formValues));
     setIsSubmit(true);
   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      console.log(formValues);
+    }
+  }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
@@ -70,18 +77,6 @@ const LoginPage = () => {
       errors.password = "Password cannot exceed more than 10 characters";
     } else if (formValues) return errors;
   };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
-
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
 
   return (
     <Container>

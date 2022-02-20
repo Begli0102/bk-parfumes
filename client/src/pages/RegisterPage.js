@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 import {
   Container,
   Wrapper,
@@ -19,6 +21,7 @@ const RegisterPage = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +38,7 @@ const RegisterPage = () => {
         console.log(data);
         setFormValues("");
 
-        window.open("/login", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+        history.push("/login");
       }, setLoading(true))
       .catch((error) => {
         if (error.response) {
@@ -88,7 +91,7 @@ const RegisterPage = () => {
         {loading ? <Loading>Loading...</Loading> : ""}
 
         {Object.keys(formErrors).length === 0 && isSubmit ? (
-          <Success>You have registered sucessfully! </Success>
+          <Success>You have registered successfully! </Success>
         ) : (
           ""
         )}
