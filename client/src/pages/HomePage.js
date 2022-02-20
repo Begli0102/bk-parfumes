@@ -6,7 +6,7 @@ import { Container } from "../styled-components/homePage";
 const HomePage = () => {
   const { products } = useContext(ProductContext);
 
-  console.log(products);
+ 
   return (
     <Container>
       {products.map((product) => (

@@ -14,14 +14,13 @@ import {
 
 const Nav = () => {
   const { cart } = useContext(ProductContext);
-  const user = localStorage.getItem("userInfo");
+  let user = JSON.parse(localStorage.getItem("userInfo"));
 
-   const history = useHistory();
+  const history = useHistory();
 
-  const logout = () => {
+  const logOut = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
-    // window.open("/")
   };
 
   return (
@@ -32,26 +31,7 @@ const Nav = () => {
         </Left>
 
         <Right>
-          {user ? (
-            <>
-              <Link
-                style={{ textDecoration: "none", color: "black" }}
-                to="/home"
-              >
-                <MenuItem>Home</MenuItem>
-              </Link>
-
-              <MenuItem onClick={logout}>Log out</MenuItem>
-
-              <MenuItem>
-                <Link to="/cart">
-                  <Badge badgeContent={cart.length} color="primary">
-                    <ShoppingCartOutlined style={{ color: "white" }} />
-                  </Badge>
-                </Link>
-              </MenuItem>
-            </>
-          ) : (
+          {!user ? (
             <>
               <Link
                 style={{ textDecoration: "none", color: "black" }}
@@ -66,6 +46,25 @@ const Nav = () => {
               >
                 <MenuItem>Log in</MenuItem>
               </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/home"
+              >
+                <MenuItem>Home</MenuItem>
+              </Link>
+
+              <MenuItem onClick={logOut}>Log out</MenuItem>
+
+              <MenuItem>
+                <Link to="/cart">
+                  <Badge badgeContent={cart.length} color="primary">
+                    <ShoppingCartOutlined style={{ color: "white" }} />
+                  </Badge>
+                </Link>
+              </MenuItem>
             </>
           )}
         </Right>

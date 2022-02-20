@@ -19,6 +19,7 @@ export const Container = styled.div`
     maxWidth: "300px",
     margin: "20px",
     height: "400px",
+   
   })}
   ${tablet({
     maxWidth: "330px",

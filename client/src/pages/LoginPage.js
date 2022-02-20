@@ -15,67 +15,69 @@ import {
 } from "../styled-components/loginPage";
 
 const LoginPage = () => {
-  const initialValues = { email: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
+  
+    const handleSubmit = (e) => {
+       e.preventDefault();
+      let setisValid = formValidation();
+      if (setisValid) {
+        /* Send a request to the server for authentication */
+        axios
+          .post("https://bk-parfumes.herokuapp.com/users/login", {
+            email: email,
+            password: password,
+          })
+          .then(
+            (response) => {
+              const data = response.data;
+              console.log(data);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+              localStorage.setItem("userInfo", JSON.stringify(data));
+            },
+            setLoading(true),
+            history.push("/home")
+          )
+          .catch((error) => {
+            if (error.response) {
+              console.log(error.response.data);
+            }
+          });
+      }
+    };
 
-    axios
-      .post("https://bk-parfumes.herokuapp.com/users/login", {
-        email: formValues.email,
-        password: formValues.password,
-      })
-      .then(
-        (response) => {
-          const data = response.data;
-          console.log(data);
+   
 
-          localStorage.setItem("userInfo", JSON.stringify(data.token));
-        },
-        setLoading(true),
-        history.push("/home")
-      )
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-        }
-      });
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
+  const formValidation = () => {
+    let emailError = {};
+    let passwordError = {};
+    let isValid = true;
+    if (!email.includes(".") || !email.includes("@")) {
+      emailError.emailNotEmail = "A valid email address is required.";
+      isValid = false;
+    } else if (!email) {
+      emailError.emailNotEmail = "Email is required!";
+      isValid = false;
     }
-  }, [formErrors]);
-
-  const validate = (values) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
+    if (!password) {
+      passwordError.passwordMissing = "Password is required!";
+      isValid = false;
+    } else if (password.trim().length < 4) {
+      passwordError.passwordMissing = "Password must be more than 4 characters";
+      isValid = false;
+    } else if (password.trim().length > 10) {
+      passwordError.passwordMissing =
+        "Password cannot exceed more than 10 characters";
+      isValid = false;
     }
-    if (!values.password) {
-      errors.password = "Password is required";
-    } else if (values.password.length < 4) {
-      errors.password = "Password must be more than 4 characters";
-    } else if (values.password.length > 10) {
-      errors.password = "Password cannot exceed more than 10 characters";
-    } else if (formValues) return errors;
+    setEmailError(emailError);
+    setPasswordError(passwordError);
+    return isValid;
   };
 
   return (
@@ -88,18 +90,23 @@ const LoginPage = () => {
           <Input
             name="email"
             placeholder="email"
-            value={formValues.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           ></Input>
-          <Error>{formErrors.email}</Error>
+          {Object.keys(emailError).map((key) => {
+            return <Error key={key}>{emailError[key]}</Error>;
+          })}
+
           <Input
             name="password"
             type="password"
             placeholder="password"
-            value={formValues.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           ></Input>
-          <Error>{formErrors.password}</Error>
+          {Object.keys(passwordError).map((key) => {
+            return <Error key={key}>{passwordError[key]}</Error>;
+          })}
           <Button onClick={handleSubmit}>Log in</Button>
           <Li>FORGOT THE PASSWORD?</Li>
           <Link
