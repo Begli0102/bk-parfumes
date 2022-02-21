@@ -6,6 +6,7 @@ const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const fetchDocuments = async () => {
     await axios
@@ -24,6 +25,14 @@ const ProductProvider = ({ children }) => {
     fetchDocuments();
   }, []);
 
+
+  useEffect(() =>{
+    if (localStorage.getItem('token')) {
+      setIsAuthenticated({ isauthenticated: true });
+    }
+})
+
+
   return (
     <ProductContext.Provider
       value={{
@@ -32,6 +41,8 @@ const ProductProvider = ({ children }) => {
         setCart,
         totalPrice,
         setTotalPrice,
+        isAuthenticated,
+        setIsAuthenticated,
       }}
     >
       {children}

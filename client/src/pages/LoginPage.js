@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-
+import { ProductContext } from "../context/ProductContext";
 import {
   Container,
   Wrapper,
@@ -21,37 +21,35 @@ const LoginPage = () => {
   const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const { setIsAuthenticated } = useContext(ProductContext);
 
-  
-    const handleSubmit = (e) => {
-       e.preventDefault();
-      let setisValid = formValidation();
-      if (setisValid) {
-        /* Send a request to the server for authentication */
-        axios
-          .post("https://bk-parfumes.herokuapp.com/users/login", {
-            email: email,
-            password: password,
-          })
-          .then(
-            (response) => {
-              const data = response.data;
-              console.log(data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let setisValid = formValidation();
+    if (setisValid) {
+      /* Send a request to the server for authentication */
+      axios
+        .post("https://bk-parfumes.herokuapp.com/users/login", {
+          email: email,
+          password: password,
+        })
+        .then(
+          (response) => {
+            const data = response.data;
+            console.log(data);
 
-              localStorage.setItem("userInfo", JSON.stringify(data));
-            },
-            setLoading(true),
-            history.push("/home")
-          )
-          .catch((error) => {
-            if (error.response) {
-              console.log(error.response.data);
-            }
-          });
-      }
-    };
-
-   
+            setIsAuthenticated(localStorage.setItem("token", JSON.stringify(data.token)));
+          },
+          setLoading(true),
+          history.push("/home")
+        )
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data);
+          }
+        });
+    }
+  };
 
   const formValidation = () => {
     let emailError = {};

@@ -13,14 +13,14 @@ import {
 } from "../styled-components/nav";
 
 const Nav = () => {
-  const { cart } = useContext(ProductContext);
-  let user = JSON.parse(localStorage.getItem("userInfo"));
+  const { cart, isAuthenticated,setIsAuthenticated } = useContext(ProductContext);
 
   const history = useHistory();
 
   const logOut = () => {
-    localStorage.removeItem("userInfo");
+    localStorage.removeItem("token");
     history.push("/");
+    setIsAuthenticated(false)
   };
 
   return (
@@ -31,7 +31,7 @@ const Nav = () => {
         </Left>
 
         <Right>
-          {!user ? (
+          {!isAuthenticated ? (
             <>
               <Link
                 style={{ textDecoration: "none", color: "black" }}
