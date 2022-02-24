@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
@@ -23,7 +23,7 @@ const LoginPage = () => {
   const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  const { setIsAuthenticated } = useContext(ProductContext);
+  const { setIsAuthenticated, isAuthenticated } = useContext(ProductContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,9 +39,12 @@ const LoginPage = () => {
           const data = response.data;
           console.log(data);
 
-          setIsAuthenticated(
-            localStorage.setItem("token", JSON.stringify(data.token))
-          );
+          setIsAuthenticated({
+            isAuthenticated: localStorage.setItem(
+              "token",
+              JSON.stringify(data.token)
+            ),
+          });
           history.push("/home");
         }, setLoading(true))
         .catch((error) => {
@@ -50,7 +53,7 @@ const LoginPage = () => {
           }
         });
     }
-    setIsAuthenticated(true);
+     setIsAuthenticated(isAuthenticated);
   };
 
   const formValidation = () => {

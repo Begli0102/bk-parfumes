@@ -42,8 +42,12 @@ const ProductProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsAuthenticated({ isAuthenticated: false });
+    //   if (JSON.parse(localStorage.getItem("token"))) {
+    //    setIsAuthenticated( true );
+    //  }
+    const token = JSON.parse(localStorage.getItem("token"));
+    if (token) {
+      setIsAuthenticated(false);
     }
   }, []);
 
