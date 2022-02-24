@@ -22,37 +22,21 @@ import {
   SummaryItemPrice,
   Button,
 } from "../styled-components/cartPage";
-import { useParams } from "react-router-dom";
+
 const CartPage = () => {
-  const { products, cart, setCart, totalPrice, setTotalPrice } =
-    useContext(ProductContext);
-
-  // let { id } = useParams();
-
-  // let product = products.filter((product) => product._id == id);
-
-  const removeItem = (id) => {
-    const newItems = cart.filter((item) => item.id !== id);
-    setCart(newItems);
-
-    const priceResult = cart.reduce(
-      (acc, val) => (acc -= val.price),
-      totalPrice
-    );
-    setTotalPrice(priceResult);
-  };
+  const { cartItems, removeItem, priceResult } = useContext(ProductContext);
 
   return (
     <Container>
-      {cart.length === 0 ? (
+      {cartItems.length === 0 ? (
         <Title>YOUR BAG IS EMPTY</Title>
       ) : (
         <Title>YOUR BAG</Title>
       )}
       <Bottom>
         <Info>
-          {cart.map((product) => (
-            <Product>
+          {cartItems.map((product) => (
+            <Product key={product._id}>
               <ProductDetail>
                 <Image src={product.img} alt="img"></Image>
               </ProductDetail>
@@ -69,7 +53,7 @@ const CartPage = () => {
                     color: "crimson",
                     fontSize: "30px",
                   }}
-                  onClick={() => removeItem(product.id)}
+                  onClick={() => removeItem(product._id)}
                 />
               </Icon>
             </Product>
@@ -80,7 +64,7 @@ const CartPage = () => {
           <SummaryTitle>ORDER SUMMARY</SummaryTitle>
           <SummaryItem type="total">
             <SummaryItemText>Total Price:</SummaryItemText>
-            <SummaryItemPrice>€ {totalPrice}</SummaryItemPrice>
+            <SummaryItemPrice>€ {priceResult}</SummaryItemPrice>
           </SummaryItem>
           <Button>Proceed to checkout</Button>
         </Summary>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 
 import {
@@ -11,29 +11,22 @@ import {
   Button,
 } from "../styled-components/product";
 
-const Product = ({ product, title, description, price, img }) => {
-  const { cart, setCart, setTotalPrice } = useContext(ProductContext);
+const Product = ({ product }) => {
 
-  const addToCart = () => {
-    setCart([...cart, product]);
-  };
 
-  useEffect(() => {
-    setTotalPrice(cart.reduce((acc, cart) => acc + cart.price, 0));
-  }, [cart]);
+  const { addToCart } = useContext(ProductContext);
+
   return (
     <>
       <Container>
-        <Image src={img} alt={img}></Image>
+        <Image src={product.img} alt=""></Image>
         <Wrapper>
-          <Title>{title}</Title>
+          <Title>{product.title}</Title>
           {/* <Description> {description.substring(0, 200)}...</Description> */}
-          <Price>Price: € {price}</Price>
-          {/* <Link to ={`/${product._id}`}> */}
-          <Button className="add" onClick={addToCart}>
+          <Price>Price: € {product.price}</Price>
+          <Button className="add" onClick={() => addToCart(product)}>
             Add to Cart
           </Button>
-          {/* </Link> */}
         </Wrapper>
       </Container>
     </>

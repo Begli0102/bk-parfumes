@@ -13,14 +13,15 @@ import {
 } from "../styled-components/nav";
 
 const Nav = () => {
-  const { cart, isAuthenticated,setIsAuthenticated } = useContext(ProductContext);
+  const { cartItems, isAuthenticated, setIsAuthenticated } =
+    useContext(ProductContext);
 
   const history = useHistory();
 
   const logOut = () => {
     localStorage.removeItem("token");
     history.push("/");
-    setIsAuthenticated(false)
+    setIsAuthenticated(false);
   };
 
   return (
@@ -60,7 +61,7 @@ const Nav = () => {
 
               <MenuItem>
                 <Link to="/cart">
-                  <Badge badgeContent={cart.length} color="primary">
+                  <Badge badgeContent={cartItems.length} color="primary">
                     <ShoppingCartOutlined style={{ color: "white" }} />
                   </Badge>
                 </Link>

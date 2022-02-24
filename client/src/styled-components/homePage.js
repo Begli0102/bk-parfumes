@@ -19,5 +19,5 @@ export const Container = styled.div`
     height: "auto",
     width: "100%",
   })}
-  ${tablet({ width: "90%" })}
+  ${tablet({ width: "90%",display:'flex', flexWrap:'wrap' })}
 `;

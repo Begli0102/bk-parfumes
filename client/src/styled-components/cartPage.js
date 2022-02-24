@@ -120,7 +120,7 @@ export const Summary = styled.div`
   height: 50vh;
   margin: 25px auto;
   ${mobile({ width: "90%", margin: "20px auto" })}
-  ${tablet({ display: "flex", flexDirection: "column", margin: "40px auto" })}
+  ${tablet({width: "90%", display: "flex", flexDirection: "column", margin: "40px auto" })}
 `;
 
 export const SummaryTitle = styled.h1`

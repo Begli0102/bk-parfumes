@@ -40,3 +40,13 @@ export const Loading = styled.h2`
   font-weight: bold;
   margin-bottom: 50px;
 `;
+
+export const TypingEffect =styled.h3`
+color:white;
+width:'80%';
+
+${mobile({
+  
+  width: "80%",
+})}
+`;

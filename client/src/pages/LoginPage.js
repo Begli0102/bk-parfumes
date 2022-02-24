@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
+import Spinner from "react-bootstrap/Spinner";
+
 import {
   Container,
   Wrapper,
@@ -33,22 +35,22 @@ const LoginPage = () => {
           email: email,
           password: password,
         })
-        .then(
-          (response) => {
-            const data = response.data;
-            console.log(data);
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
 
-            setIsAuthenticated(localStorage.setItem("token", JSON.stringify(data.token)));
-          },
-          setLoading(true),
-          history.push("/home")
-        )
+          setIsAuthenticated(
+            localStorage.setItem("token", JSON.stringify(data.token))
+          );
+          history.push("/home");
+        }, setLoading(true))
         .catch((error) => {
           if (error.response) {
             console.log(error.response.data);
           }
         });
     }
+    setIsAuthenticated(true);
   };
 
   const formValidation = () => {
@@ -81,7 +83,7 @@ const LoginPage = () => {
   return (
     <Container>
       <Wrapper>
-        {loading ? <Loading>Loading...</Loading> : ""}
+        {loading ? <Spinner animation="border" /> : ""}
 
         <Title>Sign in</Title>
         <Form>

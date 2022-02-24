@@ -14,11 +14,8 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-// import ProductProvider from "./context/ProductContext";
 
 const Container = styled.div``;
-
-
 
 function App() {
   return (

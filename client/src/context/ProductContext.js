@@ -1,12 +1,28 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useReducer, useState, useEffect } from "react";
 import axios from "axios";
+import ProductReducer from "./ProductReducer";
+import { ADD_TO_CART, REMOVE_ITEM } from "./actionTypes";
+
 export const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [priceResult, setPriceResult] = useState(0);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const initalState = {
+    cartItems: [],
+  };
+
+  const [state, dispatch] = useReducer(ProductReducer, initalState);
+
+  const addToCart = (item) => {
+    dispatch({ type: ADD_TO_CART, payload: item });
+  };
+
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE_ITEM, payload: id });
+  };
 
   const fetchDocuments = async () => {
     await axios
@@ -25,24 +41,27 @@ const ProductProvider = ({ children }) => {
     fetchDocuments();
   }, []);
 
-
-  useEffect(() =>{
-    if (localStorage.getItem('token')) {
-      setIsAuthenticated({ isauthenticated: true });
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsAuthenticated({ isAuthenticated: false });
     }
-})
+  }, []);
 
+  useEffect(() => {
+    setPriceResult(state.cartItems.reduce((acc, item) => acc + item.price, 0));
+  }, [state.cartItems]);
 
   return (
     <ProductContext.Provider
       value={{
         products,
-        cart,
-        setCart,
-        totalPrice,
-        setTotalPrice,
+        priceResult,
+        setPriceResult,
         isAuthenticated,
         setIsAuthenticated,
+        cartItems: state.cartItems,
+        addToCart,
+        removeItem,
       }}
     >
       {children}

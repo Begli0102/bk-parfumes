@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../Responsive";
+import { tablet } from "../Responsive";
 
 export const Container = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ export const Left = styled.div`
 `;
 
 export const Logo = styled.h1`
+font-size:'1.7rem';
   ${mobile({
     fontSize: "20px",
     margin: "0px",
@@ -61,7 +63,9 @@ export const Center = styled.div`
 `;
 
 export const Title = styled.h3`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  font-weight:'500';
+  ${tablet({ fontWeight:'500'})}
 `;
 
 export const List = styled.ul`

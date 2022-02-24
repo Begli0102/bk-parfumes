@@ -5,7 +5,7 @@ import { tablet } from "../Responsive";
 export const Container = styled.div`
   width: 1200px;
   max-width: 350px;
-  // height: 500px;
+   height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,14 +17,13 @@ export const Container = styled.div`
   box-shadow: 10px 10px 5px rgb(161, 159, 159);
   ${mobile({
     maxWidth: "300px",
-    margin: "20px",
+    margin: "15px",
     height: "400px",
-   
   })}
   ${tablet({
     maxWidth: "330px",
     margin: "20px",
-    height: "440px",
+    height: "500px",
   })}
 `;
 
@@ -62,7 +61,7 @@ export const Title = styled.p`
   margin: 0;
   font-spacing: 1rem;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 300;
   color: black;
 `;
 
@@ -90,11 +89,10 @@ export const Button = styled.button`
   color: #fff;
   background-color: black;
   text-transform: uppercase;
-  font-weight: bold;
   cursor: pointer;
-  margin: 20px;
-
+  margin-bottom: 30px;
   &:hover {
     transform: scale(1.1);
   }
+  ${tablet({marginBottom:'30px'})}
 `;
