@@ -1,20 +1,26 @@
-import styled from "styled-components";
-import { mobile } from "../Responsive";
-import { tablet } from "../Responsive";
+import styled from 'styled-components'
+import { mobile } from '../Responsive'
+import { tablet } from '../Responsive'
 
 export const Container = styled.div`
+  width: 100%;
   height: 60px;
-  background: rgb(5,5,14);
-  background: linear-gradient(90deg, rgba(5,5,14,1) 0%, rgba(101,156,184,1) 37%); color: white;
+  background: rgb(5, 5, 14);
+  background: linear-gradient(
+    90deg,
+    rgba(5, 5, 14, 1) 0%,
+    rgba(101, 156, 184, 1) 37%
+  );
+  color: white;
   ${mobile({})}
-  ${tablet({ width: "100%", height: "60px" })}
-`;
+  ${tablet({ width: '100%', height: '60px' })}
+`
 export const Wrapper = styled.div`
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  ${mobile({ padding: "5px" })}
-`;
+  ${mobile({ padding: '5px' })}
+`
 export const Left = styled.div`
   flex: 2;
   display: flex;
@@ -22,8 +28,8 @@ export const Left = styled.div`
   align-items: center;
   margin-left: 30px;
   padding-bottom: 10px 0px;
-  ${mobile({ width: "100%", marginLeft: "10px", padding: "12px" })}
-`;
+  ${mobile({ width: '100%', marginLeft: '10px', padding: '12px' })}
+`
 export const Logo = styled.h1`
   font-weight: bold;
   display: flex;
@@ -33,8 +39,8 @@ export const Logo = styled.h1`
   padding-bottom: 10px;
   cursor: pointer;
   font-size: 1.5rem;
-  ${mobile({ fontSize: "1rem" })}
-`;
+  ${mobile({ fontSize: '1rem' })}
+`
 
 export const Right = styled.div`
   flex: 3;
@@ -43,8 +49,8 @@ export const Right = styled.div`
   padding: 10px 20px;
   margin-right: 20px;
 
-  ${mobile({ width: "50%", marginRight: "10px", padding: "16px" })}
-`;
+  ${mobile({ width: '50%', marginRight: '10px', padding: '16px' })}
+`
 export const MenuItem = styled.div`
   font-size: 18px;
   cursor: pointer;
@@ -56,14 +62,14 @@ export const MenuItem = styled.div`
     color: aqua;
   }
   ${mobile({
-    textTransform: "uppercase",
-    fontSize: ".7rem",
-    fontWeight: "bold",
-    marginLeft: "10px",
+    textTransform: 'uppercase',
+    fontSize: '.7rem',
+    fontWeight: 'bold',
+    marginLeft: '10px'
   })}
-`;
+`
 
 export const Loading = styled.h2`
   font-weight: bold;
   margin-bottom: 50px;
-`;
+`

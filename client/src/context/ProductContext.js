@@ -1,59 +1,58 @@
-import React, { createContext, useReducer, useState, useEffect } from "react";
-import axios from "axios";
-import ProductReducer from "./ProductReducer";
-import { ADD_TO_CART, REMOVE_ITEM } from "./actionTypes";
+import React, { createContext, useReducer, useState, useEffect } from 'react'
+import axios from 'axios'
+import ProductReducer from './ProductReducer'
 
-export const ProductContext = createContext();
+export const ProductContext = createContext()
 
 const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  const [priceResult, setPriceResult] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [products, setProducts] = useState([])
+  const [priceResult, setPriceResult] = useState(0)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const initalState = {
-    cartItems: [],
-  };
+    cartItems: []
+  }
 
-  const [state, dispatch] = useReducer(ProductReducer, initalState);
+  const [state, dispatch] = useReducer(ProductReducer, initalState)
 
-  const addToCart = (item) => {
-    dispatch({ type: ADD_TO_CART, payload: item });
-  };
+  const addToCart = item => {
+    dispatch({ type: 'ADD_TO_CART', payload: item })
+  }
 
-  const removeItem = (id) => {
-    dispatch({ type: REMOVE_ITEM, payload: id });
-  };
+  const removeItem = id => {
+    dispatch({ type: 'REMOVE_ITEM', payload: id })
+  }
 
   const fetchDocuments = async () => {
     await axios
-      .get("https://bk-parfumes.herokuapp.com/products")
-      .then((res) => {
-        setProducts(res.data);
+      .get('https://bk-parfumes.herokuapp.com/products')
+      .then(res => {
+        setProducts(res.data)
 
-        console.log(res.data, "Data has been received");
+        console.log(res.data, 'Data has been received')
       })
-      .catch((error) => {
-        console.log({ message: error });
-      });
-  };
+      .catch(error => {
+        console.log({ message: error })
+      })
+  }
 
   useEffect(() => {
-    fetchDocuments();
-  }, []);
+    fetchDocuments()
+  }, [])
 
   useEffect(() => {
     //   if (JSON.parse(localStorage.getItem("token"))) {
     //    setIsAuthenticated( true );
     //  }
-    const token = JSON.parse(localStorage.getItem("token"));
+    const token = JSON.parse(localStorage.getItem('token'))
     if (token) {
-      setIsAuthenticated(false);
+      setIsAuthenticated(false)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    setPriceResult(state.cartItems.reduce((acc, item) => acc + item.price, 0));
-  }, [state.cartItems]);
+    setPriceResult(state.cartItems.reduce((acc, item) => acc + item.price, 0))
+  }, [state.cartItems])
 
   return (
     <ProductContext.Provider
@@ -65,12 +64,12 @@ const ProductProvider = ({ children }) => {
         setIsAuthenticated,
         cartItems: state.cartItems,
         addToCart,
-        removeItem,
+        removeItem
       }}
     >
       {children}
     </ProductContext.Provider>
-  );
-};
+  )
+}
 
-export default ProductProvider;
+export default ProductProvider

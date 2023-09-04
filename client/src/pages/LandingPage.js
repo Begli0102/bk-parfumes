@@ -1,7 +1,7 @@
 import {
   Container,
   Button,
-  TypingEffect,
+  TypingEffect
 } from "../styled-components/landingPage";
 import { useHistory } from "react-router-dom";
 import ReactTypingEffect from "react-typing-effect";
@@ -18,7 +18,7 @@ const LandingPage = () => {
         <ReactTypingEffect
           text={[
             "Welcome to BK-parfumes",
-            " Here, you can find a variety of parfumes. To learn more click register button!",
+            " Here, you can find a variety of parfumes. To learn more click register button!"
           ]}
           speed={100}
           eraseDelay={700}

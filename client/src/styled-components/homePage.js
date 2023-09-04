@@ -3,7 +3,7 @@ import { mobile } from "../Responsive";
 import { tablet } from "../Responsive";
 
 export const Container = styled.div`
-  width: 1500px;
+  width: 98%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -12,7 +12,8 @@ export const Container = styled.div`
   margin: 20px;
   padding: 0;
   flex-wrap: wrap;
-
+  
+  
   ${mobile({
     display: "flex",
     flexDirection: "column",

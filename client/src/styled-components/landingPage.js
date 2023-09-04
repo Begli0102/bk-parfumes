@@ -5,14 +5,15 @@ import img from "../images/boss.jpg";
 
 export const Container = styled.div`
   background-image: url(${img});
+  object-fit:cover;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-size: cover;
   background-position: center;
-  position: relative;
-  width: 100vw;
+  width: 100%;
+  margin-bottom:0px;
 `;
 
 export const Button = styled.button`

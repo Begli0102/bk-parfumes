@@ -1,14 +1,13 @@
-import { ADD_TO_CART, REMOVE_ITEM } from "./actionTypes";
 
 const ProductReducer = (state, action) => {
   switch (action.type) {
-    case ADD_TO_CART: {
+    case "ADD_TO_CART": {
       return {
         ...state,
         cartItems: [...state.cartItems, action.payload],
       };
     }
-    case REMOVE_ITEM: {
+    case "REMOVE_ITEM": {
       return {
         ...state,
         cartItems: state.cartItems.filter(

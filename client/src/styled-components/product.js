@@ -3,18 +3,20 @@ import { mobile } from "../Responsive";
 import { tablet } from "../Responsive";
 
 export const Container = styled.div`
-  width: 1200px;
+  width: 100%;
   max-width: 350px;
-   height: 500px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: 20px 30px;
+  margin: 20px;
   border: 1px solid black;
   border-radius: 10px;
   color: black;
   box-shadow: 10px 10px 5px rgb(161, 159, 159);
+  // background-color: #8EC5FC;
+  // background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
   ${mobile({
     maxWidth: "300px",
     margin: "15px",
@@ -94,5 +96,5 @@ export const Button = styled.button`
   &:hover {
     transform: scale(1.1);
   }
-  ${tablet({marginBottom:'30px'})}
+  ${tablet({ marginBottom: "30px" })}
 `;
