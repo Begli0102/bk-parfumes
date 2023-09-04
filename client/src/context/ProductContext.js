@@ -25,7 +25,7 @@ const ProductProvider = ({ children }) => {
 
   const fetchDocuments = async () => {
     await axios
-      .get('https://bk-parfumes.herokuapp.com/products')
+      .get('http://localhost:8080/products')
       .then(res => {
         setProducts(res.data)
 

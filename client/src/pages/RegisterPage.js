@@ -33,15 +33,12 @@ const RegisterPage = () => {
     let setisValid = formValidation()
     if (setisValid) {
       axios
-        .post(
-          'https://bk-parfumes-zbo7-dld7xzj12-begli0102.vercel.app/users/register',
-          {
-            name: name,
-            surname: surname,
-            email: email,
-            password: password
-          }
-        )
+        .post('http://localhost:8080/users/register', {
+          name: name,
+          surname: surname,
+          email: email,
+          password: password
+        })
         .then(response => {
           const data = response.data
           console.log(data)

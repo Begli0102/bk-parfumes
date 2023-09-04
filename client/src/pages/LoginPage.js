@@ -31,7 +31,7 @@ const LoginPage = () => {
     if (setisValid) {
       /* Send a request to the server for authentication */
       axios
-        .post('https://bk-parfumes.herokuapp.com/users/login', {
+        .post('http://localhost:8080/users/login', {
           email: email,
           password: password
         })
