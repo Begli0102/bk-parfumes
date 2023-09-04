@@ -1,38 +1,34 @@
-const express = require("express");
-const app = express();
-// const dotenv = require("dotenv");
-// dotenv.config();
-require('dotenv').config();
-const mongoose = require("mongoose");
-const cors = require("cors");
-// const userRoute = require("./routes/user");
-const userRoute = require("./routes/user");
-const productRoute = require("./routes/product");
+const express = require('express')
+const app = express()
+require('dotenv').config()
+const mongoose = require('mongoose')
+const cors = require('cors')
+const userRoute = require('./routes/user')
+const productRoute = require('./routes/product')
 
 const mongoDB = mongoose
   .connect(process.env.CONNECTION_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
-  .then(() => console.log("DB Connection Successful!"))
-  .catch((err) => {
-    console.log(err);
-  });
+  .then(() => console.log('DB Connection Successful!'))
+  .catch(err => {
+    console.log(err)
+  })
 
-app.use(cors());
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
-// app.use("/auth", authRoute);
-app.use("/users", userRoute);
-app.use("/products", productRoute);
+app.use('/users', userRoute)
+app.use('/products', productRoute)
 
-app.get("/", (req, res) => {
-  res.send("Hello to Bk-parfumes API");
-});
+app.get('/', (req, res) => {
+  res.send('Hello to Bk-parfumes API')
+})
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
-  console.log(`The server is running on port: ${PORT}`);
-});
+  console.log(`The server is running on port: ${PORT}`)
+})
 
-module.exports = mongoDB;
+module.exports = mongoDB

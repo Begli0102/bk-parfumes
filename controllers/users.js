@@ -7,14 +7,14 @@ const { body, validationResult } = require("express-validator");
 const registerUser = asyncHandler(async (req, res) => {
   const { name, surname, email, password } = req.body;
 
-   if (!name || !surname || !email || !password) {
-     res.status(400);
-     throw new Error("Please add all fields");
-   }
+  if (!name || !surname || !email || !password) {
+    res.status(400);
+    throw new Error("Please add all fields");
+  }
 
   [
     body("name", "Username must be at least 5 characters").isLength({
-      min: 6,
+      min: 6
     }),
     body(
       "surname",
@@ -25,8 +25,8 @@ const registerUser = asyncHandler(async (req, res) => {
       .normalizeEmail(),
     body("password", "Password is required").not().isEmpty().isLength({
       min: 6,
-      max: 9,
-    }),
+      max: 9
+    })
   ];
 
   let errors = validationResult(req);
@@ -36,7 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   //Check if user exists
-  const userExists = await User.findOne({ email});
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
     res.status(400);
@@ -52,7 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     surname,
     email,
-    password: hashedPassword,
+    password: hashedPassword
   });
 
   if (user) {
@@ -61,7 +61,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       surname: user.surname,
       email: user.email,
-      token: generateToken(user._id),
+      token: generateToken(user._id)
     });
   } else {
     res.status(400);
@@ -69,47 +69,29 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-
-//Login
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  // Check for user email
+  if (!email || !password) {
+    res.status(400);
+    throw new Error("Please add all fields");
+  }
+
   const user = await User.findOne({ email });
 
-  if (user && (await bcrypt.compare(password, user.password))) {
+  if (user && (await user.matchPassword(password, user.password))) {
     res.json({
-      _id: user.id,
+      _id: user._id,
       name: user.name,
-      surname:user.surname,
+      surname: user.surname,
       email: user.email,
-      password:user.password,
-      token: generateToken(user._id),
+      password: user.password,
+      token: generateToken(user._id)
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid credentials");
+    res.status(401);
+    throw new Error("Invalid Email or Password");
   }
 });
-
-// const loginUser = asyncHandler(async (req, res) => {
-//   const { email, password } = req.body;
-
-//   const user = await User.findOne({ email });
-
-//   if (user && (await user.matchPassword(password, user.password))) {
-//     res.json({
-//       _id: user._id,
-//       name: user.name,
-//       surname:user.surname,
-//       email: user.email,
-//       password: user.password,
-//       token: generateToken(user._id),
-//     });
-//   } else {
-//     res.status(401);
-//     throw new Error("Invalid Email or Password");
-//   }
-// });
 
 module.exports = { registerUser, loginUser };
