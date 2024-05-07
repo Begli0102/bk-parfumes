@@ -11,7 +11,7 @@ import LandingPage from './pages/LandingPage'
 
 //Components
 import Nav from './components/Nav'
-import Footer from './components/Footer'
+
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 

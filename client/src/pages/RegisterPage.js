@@ -11,9 +11,7 @@ import {
   Input,
   Agreement,
   Button,
-  Error,
-  Success,
-  Loading
+  Error
 } from '../styled-components/registerPage'
 
 const RegisterPage = () => {
@@ -33,7 +31,7 @@ const RegisterPage = () => {
     let setisValid = formValidation()
     if (setisValid) {
       axios
-        .post('http://localhost:8080/users/register', {
+        .post('https://perfumes-api-io3j.onrender.com/users/register', {
           name: name,
           surname: surname,
           email: email,
@@ -49,11 +47,13 @@ const RegisterPage = () => {
           history.push('/login')
         }, setLoading(true))
         .catch(error => {
-          if (error.response && error.response.status === 400) {
-            setEmailError({
-              emailDuplicated: 'Username already exists.'
-            })
-          }
+          // if (error.response && error.response.status === 400) {
+          //   setEmailError({
+          //     emailDuplicated: 'Username already exists.'
+          //   })
+          //   console.log(error)
+          // }
+          console.log(error.message)
         })
     }
   }

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
 import { ProductContext } from '../context/ProductContext'
@@ -13,7 +13,7 @@ import {
   Button,
   Li,
   Error,
-  Loading
+
 } from '../styled-components/loginPage'
 
 const LoginPage = () => {
@@ -31,7 +31,7 @@ const LoginPage = () => {
     if (setisValid) {
       /* Send a request to the server for authentication */
       axios
-        .post('http://localhost:8080/users/login', {
+        .post('https://perfumes-api-io3j.onrender.com/users/login', {
           email: email,
           password: password
         })

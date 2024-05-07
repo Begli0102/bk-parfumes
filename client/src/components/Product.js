@@ -6,7 +6,6 @@ import {
   Image,
   Wrapper,
   Title,
-  Description,
   Price,
   Button
 } from '../styled-components/product'
@@ -20,7 +19,6 @@ const Product = ({ product }) => {
         <Image src={product.img} alt=''></Image>
         <Wrapper>
           <Title>{product.title}</Title>
-          {/* <Description> {description.substring(0, 200)}...</Description> */}
           <Price>Price: € {product.price}</Price>
           <Button className='add' onClick={() => addToCart(product)}>
             Add to Cart

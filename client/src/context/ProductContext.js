@@ -25,7 +25,7 @@ const ProductProvider = ({ children }) => {
 
   const fetchDocuments = async () => {
     await axios
-      .get('http://localhost:8080/products')
+      .get('https://perfumes-api-io3j.onrender.com/products')
       .then(res => {
         setProducts(res.data)
 
